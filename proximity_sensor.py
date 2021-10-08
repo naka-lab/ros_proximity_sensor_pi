@@ -3,6 +3,7 @@
 
 import time
 import smbus
+import RPi.GPIO as GPIO
 
 VL6180X_SYSTEM_FRESH_OUT_OF_RESET = 0x0016
 VL6180X_SYSRANGE_MAX_CONVERGENCE_TIME = 0x001C
@@ -133,10 +134,42 @@ class ProximitySensor():
 
 
 def main():
+    GPIO.setmode(GPIO.BCM)
+    
+    # すべて電源をoff
+    GPIO.setup(21, GPIO.OUT)
+    GPIO.setup(20, GPIO.OUT)
+    GPIO.output(21, False)
+    GPIO.output(20, False)
+    time.sleep(1)
+     
+    # センサーの電源を一つずつonにしてアドレスを設定
+    # 21番の電源on
+    GPIO.setup(21, GPIO.OUT)
+    GPIO.output(21, True)
+    time.sleep(1)
+
+    try:
+        s = ProximitySensor(0x29)
+        s.change_address( 0x10 )
+        print( "set GPIO21 to adress:0x10" )
+    except:
+        print("GPIO21 is ready. ")
+
+    # 20番の電源on
+    GPIO.setup(20, GPIO.OUT)
+    GPIO.output(20, True)
+    time.sleep(1)
+    
+    try:
+        s = ProximitySensor(0x29)
+        s.change_address( 0x11 )
+        print( "set GPIO20 to adress:0x11" )
+    except:
+        print("GPIO20 is ready. ") 
+
     s1 = ProximitySensor( 0x10 )
     s2 = ProximitySensor( 0x11 )
-    #s1.change_address( 0x10 )
-    #aaa
     while 1:
         d1 = s1.get_distance()
         d2 = s2.get_distance()
