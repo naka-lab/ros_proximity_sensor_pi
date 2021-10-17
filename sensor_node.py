@@ -52,16 +52,15 @@ def main():
     s1 = ProximitySensor( 0x10 )
     s2 = ProximitySensor( 0x11 )
 
-    pub = rospy.Publisher('proximity_sensor_value', Float32MultiArray, queue_size=10)
+    pub = rospy.Publisher('proximity_sensor_value', Float32MultiArray, queue_size=1)
     while not rospy.is_shutdown():
         try:
             d1 = s1.get_distance()
             d2 = s2.get_distance()
             print( "distance:", d1, d2 )
+            pub.publish( Float32MultiArray(data=[d1, d2]) )
         except IOError:
             print("IOError")
-
-        pub.publish( Float32MultiArray(data=[d1, d2]) )
 
 if __name__ == '__main__':
     main()
