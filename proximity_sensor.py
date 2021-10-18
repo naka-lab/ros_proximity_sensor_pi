@@ -132,6 +132,18 @@ class ProximitySensor():
     def change_address(self, newaddr):
         self.writebyte( 0x212, newaddr )
 
+def turn_on_sensor( gpio, address ):
+    GPIO.output(gpio, True)
+    time.sleep(1)
+
+    try:
+        s = ProximitySensor(0x29)
+        s.change_address( address )
+        print( "set GPIO21 to adress:%x" % (address) )
+    except:
+        print(e)
+        print("GPI%d is ready. " % (gpio))
+
 
 def main():
     GPIO.setmode(GPIO.BCM)
@@ -139,11 +151,18 @@ def main():
     # すべて電源をoff
     GPIO.setup(21, GPIO.OUT)
     GPIO.setup(20, GPIO.OUT)
+    GPIO.setup(16, GPIO.OUT)
     GPIO.output(21, False)
     GPIO.output(20, False)
+    GPIO.output(16, False)
     time.sleep(1)
-     
+
     # センサーの電源を一つずつonにしてアドレスを設定
+    turn_on_sensor( 21, 0x10 )
+    turn_on_sensor( 20, 0x11 )
+    turn_on_sensor( 16, 0x12 )
+    
+    """
     # 21番の電源on
     GPIO.setup(21, GPIO.OUT)
     GPIO.output(21, True)
@@ -167,13 +186,16 @@ def main():
         print( "set GPIO20 to adress:0x11" )
     except:
         print("GPIO20 is ready. ") 
+     """
 
     s1 = ProximitySensor( 0x10 )
     s2 = ProximitySensor( 0x11 )
+    s3 = ProximitySensor( 0x12 )
     while 1:
         d1 = s1.get_distance()
         d2 = s2.get_distance()
-        print d1, d2
+        d3 = s3.get_distance()
+        print d1, d2, d3
 
 if __name__=="__main__":
     main()
