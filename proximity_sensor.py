@@ -111,13 +111,13 @@ class ProximitySensor():
         d1 = (data16 >> 8) & 0xFF
         d0 = data16 & 0xFF
         self.bus.write_i2c_block_data(self.addr, a1, [a0, d1, d0])
+     
+    def start_scan(self):
+        self.writebyte(VL6180X_SYSRANGE_START, 0x03) # continuous mode
         
     def get_distance(self):
-        self.writebyte(VL6180X_SYSRANGE_START, 0x01) #0x03 renzoku
-        time.sleep(0.1)
         distance = self.read(VL6180X_RESULT_RANGE_VAL)
         self.writebyte(VL6180X_SYSTEM_INTERRUPT_CLEAR, 0x07)
-        #print distance,"mm"
         return distance
         
     def get_light(self):
@@ -191,6 +191,9 @@ def main():
     s1 = ProximitySensor( 0x10 )
     s2 = ProximitySensor( 0x11 )
     s3 = ProximitySensor( 0x12 )
+    s1.start_scan()
+    s2.start_scan()
+    s3.start_scan()
     while 1:
         d1 = s1.get_distance()
         d2 = s2.get_distance()

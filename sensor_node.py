@@ -37,8 +37,12 @@ def main():
     s2 = ProximitySensor( 0x11 )
     s3 = ProximitySensor( 0x12 )
 
+    s1.start_scan()
+    s2.start_scan()
+    s3.start_scan()
 
     pub = rospy.Publisher('proximity_sensor_value', Float32MultiArray, queue_size=1)
+    r = rospy.Rate(10)
     while not rospy.is_shutdown():
         try:
             d1 = s1.get_distance()
@@ -46,6 +50,7 @@ def main():
             d3 = s3.get_distance()
             print( "distance:", d1, d2, d3 )
             pub.publish( Float32MultiArray(data=[d1, d2, d3]) )
+            r.sleep()
         except IOError:
             print("IOError")
 
