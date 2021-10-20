@@ -141,7 +141,6 @@ def turn_on_sensor( gpio, address ):
         s.change_address( address )
         print( "set GPIO21 to adress:%x" % (address) )
     except:
-        print(e)
         print("GPI%d is ready. " % (gpio))
 
 
