@@ -25,9 +25,9 @@
 - このリポジトリをクローン：`https://github.com/naka-lab/ros_proximity_sensor_pi.git`
 - 実行するためのシェルスクリプトを作成
    ```
-   cp ros_proximity_sensor_pi/start_sensor.sh ./　
+   cp ros_proximity_sensor_pi/start_sensor.sh ./
    chmod +x start_sensor.sh
-   nano start_sensor.sh  # シェル内のROS_MASTER_URIとROS_IPを自身の環境に合わせて変更する
+   nano start_sensor.sh   # シェル内のROS_MASTER_URIとROS_IPを自身の環境に合わせて変更する
    ```
 - この時点で`./start_sensor.sh`で実行できることが確認できたらRaspberry Piをリードオンリー化する[[参考]](https://astherier.com/blog/2020/05/change-raspi-to-read-only/#])
   - リードオンリー化後は，Raspberry Piの電源を直接切れるようになります
