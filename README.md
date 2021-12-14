@@ -14,12 +14,12 @@
 | SDA(3番ピン)     | SDA  | SDA  | SDA  | 
 | GND(6番ピン)     | GND  | GND  | GND  | 
 
-- GPIO21, 20, 16は各センサーへの電力共有および，個別にON/OFFするためのスイッチとして利用
+- GPIO21, 20, 16は各センサーへの電力供給および，個別にON/OFFするためのスイッチとして利用
 - Strethへの取り付けは，[これ](mounter_stretch)を使う
 
 
 ## setup
-- raspberry piをwifiに接続できるようにする
+- Raspberry Piをwifiに接続できるようにする
 - ssh, i2cを有効化する
 - 依存モジュールインストール：`pip install rospkg catkin_pkg`
 - このリポジトリをクローン：`clone https://github.com/naka-lab/ros_proximity_sensor_pi.git`
@@ -35,4 +35,4 @@
 
 ## 実行方法
 - 正常にセットアップできていれば，sshでRaspberry Piに接続し，シェルクリプト`./start_sensor.sh`を実行するとノードが立ち上がる
-- 情報はFloat32MultiArray型のroximity_sensor_valueという名前でpublishされる
+- 情報はFloat32MultiArray型のproximity_sensor_valueという名前でpublishされる
