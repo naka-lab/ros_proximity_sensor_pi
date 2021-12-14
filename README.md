@@ -25,7 +25,7 @@
 - このリポジトリをクローン：`https://github.com/naka-lab/ros_proximity_sensor_pi.git`
 - 実行するためのシェルスクリプトを作成
    ```
-   cp ros_proximity_sensor_pi/start_sensor.sh　
+   cp ros_proximity_sensor_pi/start_sensor.sh ./　
    chmod +x start_sensor.sh
    nano start_sensor.sh  # シェル内のROS_MASTER_URIとROS_IPを自身の環境に合わせて変更する
    ```
