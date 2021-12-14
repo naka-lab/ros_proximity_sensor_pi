@@ -14,7 +14,9 @@
 | SDA(3番ピン)     | SDA  | SDA  | SDA  | 
 | GND(6番ピン)     | GND  | GND  | GND  | 
 
-GPIO21, 20, 16は各センサーへの電力共有および，個別にON/OFFするためのスイッチとして利用
+- GPIO21, 20, 16は各センサーへの電力共有および，個別にON/OFFするためのスイッチとして利用
+- Strethへの取り付けは，[これ](mounter_stretch)を使う
+
 
 ## setup
 - raspberry piをwifiに接続できるようにする
