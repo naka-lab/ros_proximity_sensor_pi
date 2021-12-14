@@ -22,7 +22,7 @@
 - raspberry piをwifiに接続できるようにする
 - ssh, i2cを有効化する
 - 依存モジュールインストール：`pip install rospkg catkin_pkg`
-- このリポジトリをクローン：`https://github.com/naka-lab/ros_proximity_sensor_pi.git`
+- このリポジトリをクローン：`clone https://github.com/naka-lab/ros_proximity_sensor_pi.git`
 - 実行するためのシェルスクリプトを作成
    ```
    cp ros_proximity_sensor_pi/start_sensor.sh ./
